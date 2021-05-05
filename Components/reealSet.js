@@ -9,20 +9,22 @@ class ReelSet extends Component {
         super(props);
         this.state = {
             width: null,
-            haigth: null
+            height: null
         }
     }
-
+    
     onLayout = (e) => {
         this.setState({
             width: e.nativeEvent.layout.width,
             height: e.nativeEvent.layout.height
         })
+            
     }
-
+    
     renderReels = () => {
         let reelWidth = this.state.width / Constants.REELS;
-        let reelList = Array.apply(null, Array(Constants.REELS)).map((element, index) => {
+        console.log("🚀 ~ file: reealSet.js ~ line 28 ~ ReelSet ~ reelWidth", reelWidth)
+        let reelList = Array.apply(null, Array(Constants.REELS)).map((elem, index) => {
             return <Reel width={reelWidth} height={this.state.height} key={index} index={index}/>
         })
         return(
@@ -31,7 +33,7 @@ class ReelSet extends Component {
             </>
         )
     }
-
+    
     render() {
         return (
             <View style={style.reealSet} onLayout={this.onLayout}>
