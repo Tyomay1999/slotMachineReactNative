@@ -1,4 +1,4 @@
-const images = {
+const Images = {
     star: require('./Img/star.jpg'),
     bell: require('./Img/bell.jpg'),
     clock: require('./Img/clock.jpg'),
@@ -12,4 +12,4 @@ const images = {
     orange: require('./Img/orange.jpg')
 }
 
-export default images;
+export default Images;

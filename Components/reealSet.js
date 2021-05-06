@@ -10,9 +10,20 @@ class ReelSet extends Component {
         this.state = {
             width: null,
             height: null
+        };
+        this.reels = [];
+    }
+    randomBetwen = (min,max) => {
+        return Math.floor(Math.random() * (max - min + 1) - min)
+    }
+    spin = () => {
+        for(let i = 0; i < Constants.REELS; i++) {
+            this.reels[i].scrollByOffset(this.randomBetwen(
+                (Constants.REELS_REPEAT - 6) + this.reels[i].symbols.length,
+                (Constants.REELS_REPEAT - 5) + this.reels[i].symbols.length
+            ))
         }
     }
-    
     onLayout = (e) => {
         this.setState({
             width: e.nativeEvent.layout.width,
@@ -23,9 +34,8 @@ class ReelSet extends Component {
     
     renderReels = () => {
         let reelWidth = this.state.width / Constants.REELS;
-        console.log("🚀 ~ file: reealSet.js ~ line 28 ~ ReelSet ~ reelWidth", reelWidth)
         let reelList = Array.apply(null, Array(Constants.REELS)).map((elem, index) => {
-            return <Reel width={reelWidth} height={this.state.height} key={index} index={index}/>
+            return <Reel width={reelWidth} height={this.state.height} key={index} index={index} ref={(ref) => {this.reels[index] = ref}}/>
         })
         return(
             <>

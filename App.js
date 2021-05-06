@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 import ReelSet from './Components/reealSet';
 import { Constants } from './constants';
 
 const App = () => {
+  const [reelSet, setReelSet] = useState(null)
   const {container,buttonContainer,playContanier} = styles
   return (
     <ScrollView>
       <View style={container}>
       <View style={playContanier}>
-        <ReelSet/>
+        <ReelSet ref={(ref) => {setReelSet(ref)}}/>
       </View>
       <View style={buttonContainer}>
-        <Button title="SPIN" onPress={() => {}} />
+        <Button title="SPIN" onPress={() => { reelSet.spin()}} />
       </View>
 
       <StatusBar style="auto" />
